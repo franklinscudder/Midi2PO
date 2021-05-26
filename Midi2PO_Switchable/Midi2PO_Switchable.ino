@@ -1,3 +1,9 @@
+/*
+ * Midi2PO_Switchable Firmware V1.0
+ * Thomas Findlay (Findlaytel@gmail.com)
+ * 26 May 2021
+ */
+
 int incomingByte = 0; // for incoming serial data
 int clockCount = 0;
 bool started = false;
@@ -67,7 +73,9 @@ void loop() {
       started = false;
     }
 
+    digitalWrite(LEDPin, LOW);
     if (clockCount == mode and started) {
+      digitalWrite(LEDPin, HIGH);
       analogWrite(DACPin, 0);
       delayMicroseconds(2500);
       analogWrite(DACPin, 1024/3.3);
